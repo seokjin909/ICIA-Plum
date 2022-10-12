@@ -7,8 +7,8 @@ import java.sql.*;
 public class PlayListDao {
 
     private String drv = "com.mysql.cj.jdbc.Driver";
-    private String url = "jdbc:mysql://localhost:3306/test";
-    private String user = "m_project";
+    private String url = "jdbc:mysql://localhost:3306/plum";
+    private String user = "dev01";
     private String pwd = "12341234";
 
     // DB 관련 객체
