@@ -91,7 +91,7 @@ public class DataController {
 
             switch (menu) {
                 case 1:
-                    searchMusic();
+                    searchMusic(profil);
                     break;
                 case 2:
                     latestMusic();
@@ -200,12 +200,12 @@ public class DataController {
 
 
     // 음악 검색 메소드 (중복 허용)
-    private void searchMusic() {
+    private void searchMusic(MemberDto memdata) {
         // 검색할 음악의 제목을 [VIEW]에서 입력받아서 가져오기
         String searchIndex = dView.searchMusic("검색 : ");
         List<MusicDto> mList = dServ.getSearchMusicList(searchIndex);
         MusicDto mData = dView.outputSearchList(mList);
-        String msg = dServ.insertPlayList(mData);
+        String msg = dServ.insertPlayList(mData, memdata);
         dView.printMsg(msg);
     }
 

@@ -136,10 +136,10 @@ public class DataService {
     }
 
 
-    public String insertPlayList(MusicDto mData) {
+    public String insertPlayList(MusicDto mData, MemberDto profil) {
         String msg = null;
 
-        int res = pDao.insertMusicData(mData);
+        int res = pDao.insertMusicData(mData, profil);
         if (res != 0){
             msg = "추가 완료";
         } else {
