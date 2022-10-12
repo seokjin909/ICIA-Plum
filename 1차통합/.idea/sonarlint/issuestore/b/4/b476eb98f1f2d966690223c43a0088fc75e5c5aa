@@ -1,0 +1,5 @@
+
+t
+java:S1488"YImmediately return this expression instead of assigning it to the temporary variable "s".(¿ò¾Øùÿÿÿÿ
+N	java:S106%"9Replace this use of System.out or System.err by a logger.(…Ÿ¥’
+M	java:S106)"9Replace this use of System.out or System.err by a logger.(ƒÚáB
