@@ -1,0 +1,7 @@
+
+d	java:S116"ORename this field "a_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ñ°µà
+e	java:S116"PRename this field "a_pwd" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…›ìÚ
+E
+java:S1068"(Remove this unused "a_id" private field.(Ñ°µà8ù»¿±¼0
+F
+java:S1068")Remove this unused "a_pwd" private field.(…›ìÚ8ù»¿±¼0
