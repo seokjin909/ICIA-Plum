@@ -1,5 +1,6 @@
 package com.dao;
 
+import com.dto.MemberDto;
 import com.dto.MusicDto;
 
 import java.sql.*;
@@ -7,8 +8,8 @@ import java.sql.*;
 public class PlayListDao {
 
     private String drv = "com.mysql.cj.jdbc.Driver";
-    private String url = "jdbc:mysql://localhost:3306/test";
-    private String user = "m_project";
+    private String url = "jdbc:mysql://localhost:3306/plum";
+    private String user = "dev01";
     private String pwd = "12341234";
 
     // DB 관련 객체
@@ -34,14 +35,14 @@ public class PlayListDao {
         }
     }
 
-    public int insertMusicData(MusicDto mData) {
+    public int insertMusicData(MusicDto mData, MemberDto profil) {
         int result = 0;
         String query = "INSERT INTO playlist VALUES (DEFAULT,?,?)";
 
         try {
             conn = DriverManager.getConnection(url,user,pwd);
             pstmt = conn.prepareStatement(query);
-            // pstmt.setString(1, profil.getM_id());
+            pstmt.setString(1, profil.getM_id());
             pstmt.setInt(2, mData.getM_code());
             result = pstmt.executeUpdate();
         } catch (SQLException e) {

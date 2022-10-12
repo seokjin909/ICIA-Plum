@@ -1,8 +1,0 @@
-
-N	java:S106"9Replace this use of System.out or System.err by a logger.(ÖÑ´Ä
-6	java:S131""Add a default case to this switch.(€ä¿;
-C
-java:S1172L"-Remove this unused method parameter "profil".(ô×ñ¬
-M	java:S106p"9Replace this use of System.out or System.err by a logger.(‚š‰1
-M	java:S106{"9Replace this use of System.out or System.err by a logger.(‚š‰1
-U	java:S106„"9Replace this use of System.out or System.err by a logger.(‚š‰18õîÍÐ¼0
