@@ -9,7 +9,7 @@ CREATE TABLE Music (
 	m_title	VARCHAR(30)	NOT NULL,
 	m_singer VARCHAR(20)	NOT NULL,
 	m_date	DATE	NOT NULL,
-	m_album	VARCHAR(20)	NOT NULL
+	m_album	VARCHAR(30)	NOT NULL
 );
 
 CREATE TABLE Member (
