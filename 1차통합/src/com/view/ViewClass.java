@@ -68,7 +68,7 @@ public class ViewClass {
         ioc.twoPrint("====================================");
         ioc.twoPrint("\t\t\t  🍑PLUM");
         if (music != null) {
-            ioc.twoPrint("\t\t︎️▶︎\t" + music.getM_title());
+            ioc.twoPrint("\t\t▶\t" + music.getM_title());
             ioc.twoPrint("\t\t-\t" + music.getM_singer() + "\t-");
             ioc.twoPrint("\t\t\t⏪\t⏯\t⏩");
         } else {
@@ -248,6 +248,25 @@ public class ViewClass {
         for (MusicDto m : mList) {
             ioc.twoPrint((mList.indexOf(m) + 1) + "\t| " + m.getM_title() + "\t" + m.getM_singer() + "\t\t" + m.getM_date() + "\t" + m.getM_album());
             ioc.twoPrint("---------------------------------------------------------------");
+        }
+        ioc.twoPrint("\t\t\t\t\t🗂 MUSIC LIST");
+        ioc.twoPrint("===============================================================");
+    }
+
+    public void outputPlayList(List<MusicDto> mList) {
+        if (mList.size() == 0) {
+            ioc.twoPrint("현재 재생목록이 존재하지 않습니다.");
+            ioc.twoPrint("===============================================================");
+            return;
+        }
+        ioc.twoPrint("===============================================================");
+        ioc.twoPrint("\t\t\t\t\t🔥 나의 재생목록");
+        ioc.twoPrint("===============================================================");
+        ioc.twoPrint("번호\t| 제목\t\t\t가수\t\t\t앨범");
+        ioc.twoPrint("===============================================================");
+        for(MusicDto m : mList){
+            ioc.twoPrint(mList.indexOf(m) + 1 +"\t| " + m.getM_title() + "\t" + m.getM_singer() +"\t\t" + m.getM_album() );
+
         }
         ioc.twoPrint("\t\t\t\t\t🗂 MUSIC LIST");
         ioc.twoPrint("===============================================================");

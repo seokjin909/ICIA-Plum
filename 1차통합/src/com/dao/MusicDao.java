@@ -1,6 +1,8 @@
 package com.dao;
 
+import com.dto.MemberDto;
 import com.dto.MusicDto;
+import com.dto.PlayListDto;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -246,6 +248,37 @@ public class MusicDao {
         } finally {
             close();
         }
+        return mList;
+    }
+
+    public List<MusicDto> showPlayList(MemberDto profil) {
+        List<MusicDto> mList = new ArrayList<>();
+        String query = "SELECT DISTINCT m_title, m_singer, m_album FROM music " +
+                "JOIN playlist ON playlist.m_code = music.m_code " +
+                "WHERE playlist.m_id = ?";
+
+        try {
+            conn = DriverManager.getConnection(url, user, pwd);
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, profil.getM_id());
+            rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                if(mList == null){
+                    mList = new ArrayList<>();
+                }
+                MusicDto mDto = new MusicDto();
+                mDto.setM_title(rs.getString(1));
+                mDto.setM_singer(rs.getString(2));
+                mDto.setM_album(rs.getString(3));
+                mList.add(mDto);
+            }
+        } catch (SQLException e) {
+            mList = null;
+        } finally {
+            close();
+        }
+
         return mList;
     }
 }
