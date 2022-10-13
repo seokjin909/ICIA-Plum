@@ -1,6 +1,6 @@
 package com.service;
 
-import com.dao.DataDao;
+import com.dao.MemberDao;
 import com.dao.MusicDao;
 import com.dao.PlayListDao;
 import com.dto.AdminDto;
@@ -10,11 +10,11 @@ import com.dto.PlayListDto;
 
 import java.util.List;
 
-public class DataService {
+public class ServiceClass {
 
     private MusicDao muDao = new MusicDao();
     private PlayListDao pDao = new PlayListDao();
-    private DataDao dDao = new DataDao();
+    private MemberDao dDao = new MemberDao();
 
     public String insertData(MemberDto memData) {
         String msg = null;

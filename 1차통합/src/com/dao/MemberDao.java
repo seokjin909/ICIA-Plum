@@ -4,7 +4,7 @@ import com.dto.AdminDto;
 import com.dto.MemberDto;
 import java.sql.*;
 
-public class DataDao {
+public class MemberDao {
 
     private String drv = "com.mysql.cj.jdbc.Driver";
     private String url = "jdbc:mysql://localhost:3306/plum";
@@ -15,7 +15,7 @@ public class DataDao {
     private PreparedStatement pstmt;
     private ResultSet rs;
 
-    public DataDao(){
+    public MemberDao(){
         try {
             Class.forName(drv);
         } catch (ClassNotFoundException e) {

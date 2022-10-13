@@ -3,15 +3,15 @@ package com.controller;
 import com.dto.AdminDto;
 import com.dto.MusicDto;
 import com.dto.PlayListDto;
-import com.service.DataService;
-import com.view.DataView;
+import com.service.ServiceClass;
+import com.view.ViewClass;
 import com.dto.MemberDto;
 
 import java.util.List;
 
-public class DataController {
-    private DataView dView = new DataView();
-    private DataService dServ = new DataService();
+public class Controller {
+    private ViewClass dView = new ViewClass();
+    private ServiceClass dServ = new ServiceClass();
 
 
     // 기본 실행 메소드
@@ -80,7 +80,7 @@ public class DataController {
     }
 
     // 로그인 이후 실행 메소드
-    public void runAsMember (MemberDto profil) {
+    public void runAsMember(MemberDto profil) {
         int menu = -1;
         while (true) {
 
@@ -218,9 +218,11 @@ public class DataController {
         // 검색할 음악의 제목을 [VIEW]에서 입력받아서 가져오기
         String searchIndex = dView.searchMusic("검색 : ");
         List<MusicDto> mList = dServ.getSearchMusicList(searchIndex);
-        MusicDto mData = dView.outputSearchList(mList);
-        String msg = dServ.insertPlayList(mData, memdata);
-        dView.printMsg(msg);
+        MusicDto mData = dView.outputSearchList(mList,searchIndex);
+        if (mData != null) {
+            String msg = dServ.insertPlayList(mData, memdata);
+            dView.printMsg(msg);
+        }
     }
 
     // 최신 음악 출력 메소드

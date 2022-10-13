@@ -3,18 +3,19 @@ package com.view;
 import com.dto.AdminDto;
 import com.dto.MusicDto;
 import com.dto.MemberDto;
-import com.dto.PlayListDto;
 
 import java.util.List;
 
-public class DataView {
+public class ViewClass {
     private InOutClass ioc = new InOutClass();
 
+    // 시작 화면 출력 메소드
     public int showFirst() {
         int menu = -1;
 
-        ioc.twoPrint("============== PLUM 사이트 ==============");
-        ioc.twoPrint("메뉴");
+        ioc.twoPrint("====================================");
+        ioc.twoPrint("\t\t\t🍑PLUM MUSIC");
+        ioc.twoPrint("====================================");
         ioc.twoPrint("1. 로그인");
         ioc.twoPrint("2. 회원가입");
         ioc.twoPrint("3. 비밀번호 찾기");
@@ -28,7 +29,9 @@ public class DataView {
     }
 
     public void signUp(MemberDto memData) {
-        printMsg("========== 회원가입 ==========");
+        ioc.twoPrint("====================================");
+        ioc.twoPrint("회원가입을 진행합니다 >>>>");
+        ioc.twoPrint("====================================");
         memData.setM_id(ioc.inStr("아이디 : "));
         memData.setM_pwd(ioc.inStr("비밀번호 : "));
         memData.setM_name(ioc.inStr("이름 : "));
@@ -36,19 +39,25 @@ public class DataView {
     }
 
     public void login(MemberDto memData) {
-        printMsg("========== 로그인 ==========");
+        ioc.twoPrint("====================================");
+        ioc.twoPrint("로그인을 진행합니다 >>>>");
+        ioc.twoPrint("====================================");
         memData.setM_id(ioc.inStr("아이디 : "));
         memData.setM_pwd(ioc.inStr("비밀번호 : "));
     }
 
     public void findPW(MemberDto memData) {
-        printMsg("========== 비밀번호 찾기 ==========");
+        ioc.twoPrint("====================================");
+        ioc.twoPrint("비밀번호 찾기 >>>>");
+        ioc.twoPrint("====================================");
         memData.setM_id(ioc.inStr("아이디 : "));
         memData.setM_name(ioc.inStr("이름 : "));
     }
 
     public void managLogin(AdminDto aDto) {
-        printMsg("========== 관리자 로그인 ==========");
+        ioc.twoPrint("====================================");
+        ioc.twoPrint("관리자 계정으로 접속합니다 >>>>");
+        ioc.twoPrint("====================================");
         aDto.setA_id(ioc.inStr("아이디 : "));
         aDto.setA_pwd(ioc.inStr("비밀번호 : "));
     }
@@ -87,22 +96,28 @@ public class DataView {
         return str;
     }
 
-    public MusicDto outputSearchList(List<MusicDto> mList) {
+    public MusicDto outputSearchList(List<MusicDto> mList, String s) {
         MusicDto mData = new MusicDto();
-        ioc.twoPrint("========================================================================================");
-        ioc.twoPrint("\t\t\t\t\t\t\t💿Search Results");
-        ioc.twoPrint("========================================================================================");
-        ioc.twoPrint("번호\t|\t제목\t\t\t가수\t\t\t\t발매일\t\t\t앨범");
-        ioc.twoPrint("========================================================================================");
-        // 목록 출력(반복)
-        for (MusicDto m : mList) {
-            ioc.twoPrint((mList.indexOf(m) + 1) + "\t|\t" + m.getM_title() + "\t\t" + m.getM_singer() + "\t" + m.getM_date() + "\t\t" + m.getM_album());
-            ioc.twoPrint("---------------------------------------------------------------");
+        if (mList.size() == 0) {
+            ioc.twoPrint("ERROR 404 '" + s + "' 대한 검색 결과가 없습니다");
+            ioc.twoPrint("===============================================================");
+            mData = null;
+        } else {
+            ioc.twoPrint("========================================================================================");
+            ioc.twoPrint("\t\t\t\t\t\t\t💿Search Results");
+            ioc.twoPrint("========================================================================================");
+            ioc.twoPrint("번호\t|\t제목\t\t\t가수\t\t\t\t발매일\t\t\t앨범");
+            ioc.twoPrint("========================================================================================");
+            // 목록 출력(반복)
+            for (MusicDto m : mList) {
+                ioc.twoPrint((mList.indexOf(m) + 1) + "\t|\t" + m.getM_title() + "\t\t" + m.getM_singer() + "\t" + m.getM_date() + "\t\t" + m.getM_album());
+                ioc.twoPrint("---------------------------------------------------------------");
+            }
+            ioc.twoPrint("\t\t\t\t\t\t\t🍑PLUM");
+            ioc.twoPrint("========================================================================================");
+            int menu = ioc.inNum("재생할 음악의 번호를 입력 : ");
+            mData = mList.get(menu - 1);
         }
-        ioc.twoPrint("\t\t\t\t\t\t\t🍑PLUM");
-        ioc.twoPrint("========================================================================================");
-        int menu = ioc.inNum("재생할 음악의 번호를 입력 : ");
-        mData = mList.get(menu - 1);
         return mData;
     }
 

@@ -2,6 +2,7 @@ package com.dao;
 
 import com.dto.MemberDto;
 import com.dto.MusicDto;
+import com.dto.PlayListDto;
 
 import java.sql.*;
 
@@ -51,5 +52,28 @@ public class PlayListDao {
             close();
         }
         return result;
+    }
+
+    public MusicDto getFirstMusic(PlayListDto pList, MemberDto profil) {
+        MusicDto music = null;
+        String query = "SELECT MS.m_code, m_title, m_singer, M.m_id FROM playList P JOIN member M ON P.m_id = M.m_id JOIN Music MS ON P.m_code = MS.m_code WHERE M.m_id = ?";
+
+        try {
+            conn = DriverManager.getConnection(url,user,pwd);
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, profil.getM_id());
+            rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                music = new MusicDto();
+                music.setM_title(rs.getString(2));
+                music.setM_singer(rs.getString(3));
+            }
+        } catch (SQLException e) {
+            music = null;
+        } finally {
+            close();
+        }
+       return music;
     }
 }
