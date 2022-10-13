@@ -157,4 +157,10 @@ public class ServiceClass {
         List<MusicDto> mList = muDao.getPopularMusicList();
         return mList;
     }
+
+    public List<MusicDto> showPlayList(MemberDto profil) {
+        List<MusicDto> mList = muDao.showPlayList(profil);
+
+        return mList;
+    }
 }

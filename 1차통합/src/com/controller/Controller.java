@@ -107,7 +107,7 @@ public class Controller {
                     popularMusic();
                     break;
                 case 4:
-                    // showPlayList(profil);
+                    showPlayList(profil);
                     break;
                 default:
                     dView.printMsg("0~4 사이 숫자 입력!");
@@ -115,6 +115,7 @@ public class Controller {
             }
         }
     }
+
 
     /* run */
 
@@ -236,4 +237,13 @@ public class Controller {
         List<MusicDto> mList = dServ.getPopularMusicList();
         dView.outputPopularMuiscList(mList);
     }
+
+
+    private void showPlayList(MemberDto profil) {
+        List<MusicDto> mList = dServ.showPlayList(profil);
+        dView.outputPlayList(mList);
+
+    }
+
+
 }
