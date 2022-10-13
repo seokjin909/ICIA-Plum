@@ -1,5 +1,5 @@
 package com.dto;
 
-public class PlayListDto extends MusicDto{
+public class PlayListDto {
     private int p_code;
 }

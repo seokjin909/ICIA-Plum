@@ -55,10 +55,63 @@ INSERT INTO Music VALUES (DEFAULT, 'TOMBOY','(여자)아이들','2022-03-14','I 
 INSERT INTO Music VALUES (DEFAULT, 'RUN','Leellamarz(릴러말즈)','2020-06-23','RUN');
 INSERT INTO Music VALUES (DEFAULT, 'Trip','Leellamarz(릴러말즈)','2018-09-10','Trip');
 INSERT INTO Music VALUES (DEFAULT, 'TWINTAIL20','디핵(D-Hack)','2020-03-21','TWINTAIL20');
+INSERT INTO Music VALUES (DEFAULT, 'HUSH RUSH','이채연','2020-03-21','HUSH RUSH');
+INSERT INTO Music VALUES (DEFAULT, 'No Rules','백호','2020-03-21','Absolute Zero');
+INSERT INTO Music VALUES (DEFAULT, 'NITRO','박지훈','2020-03-21','THE ANSWER');
+INSERT INTO Music VALUES (DEFAULT, '거짓말','BIGBANG(빅뱅)','2007-08-16','Always');
+INSERT INTO Music VALUES (DEFAULT, '마지막 인사','BIGBANG(빅뱅)','2007-11-22','Hot issue');
+INSERT INTO Music VALUES (DEFAULT, '하루하루','BIGBANG(빅뱅)','2008-08-08','Stand Up');
+INSERT INTO Music VALUES (DEFAULT, 'This Love','BIGBANG(빅뱅)','2006-08-29','BIGBANG first single');
+INSERT INTO Music VALUES (DEFAULT, 'Butter','방탄소년단','2021-05-21','Butter');
+INSERT INTO Music VALUES (DEFAULT, 'Dynamite','방탄소년단','2020-08-21','Dynamite');
+INSERT INTO Music VALUES (DEFAULT, 'DNA','방탄소년단','2018-08-24','Answer');
+INSERT INTO Music VALUES (DEFAULT, 'Euphoria','방탄소년단','2018-08-24','Answer');
+
+
+
 
 INSERT INTO member VALUES("jun", "jun1", "전아름", 25);
-INSERT INTO member VALUES('test01',1234,'테스트',25);
+INSERT INTO member VALUES('test01',1234,'테스트1',25);
+INSERT INTO member VALUES('test02',1234,'테스트2',25);
+INSERT INTO member VALUES('test03',1234,'테스트3',25);
+INSERT INTO member VALUES('test04',1234,'테스트4',25);
+
 INSERT INTO admin VALUES('admin1' , 'admin123');
+
+INSERT INTO Playlist VALUES (DEFAULT,'test01',3);
+INSERT INTO Playlist VALUES (DEFAULT,'test01',1);
+INSERT INTO Playlist VALUES (DEFAULT,'test01',8);
+INSERT INTO Playlist VALUES (DEFAULT,'test01',10);
+INSERT INTO Playlist VALUES (DEFAULT,'test01',12);
+INSERT INTO Playlist VALUES (DEFAULT,'test01',3);
+
+INSERT INTO Playlist VALUES (DEFAULT,'test02',2);
+INSERT INTO Playlist VALUES (DEFAULT,'test02',1);
+INSERT INTO Playlist VALUES (DEFAULT,'test02',5);
+INSERT INTO Playlist VALUES (DEFAULT,'test02',7);
+INSERT INTO Playlist VALUES (DEFAULT,'test02',8);
+
+INSERT INTO Playlist VALUES (DEFAULT,'test03',1);
+INSERT INTO Playlist VALUES (DEFAULT,'test03',17);
+INSERT INTO Playlist VALUES (DEFAULT,'test03',18);
+INSERT INTO Playlist VALUES (DEFAULT,'test03',13);
+INSERT INTO Playlist VALUES (DEFAULT,'test03',15);
+
+INSERT INTO Playlist VALUES (DEFAULT,'test04',7);
+INSERT INTO Playlist VALUES (DEFAULT,'test04',4);
+INSERT INTO Playlist VALUES (DEFAULT,'test04',7);
+INSERT INTO Playlist VALUES (DEFAULT,'test04',22);
+INSERT INTO Playlist VALUES (DEFAULT,'test04',20);
+
+SELECT P.m_code, count(*) `재생 횟수`, m_title `제목`, m_singer `가수`,m_date `발매일` , m_album `앨범` FROM playlist P
+JOIN Music M ON P.m_code = M.m_code
+GROUP BY P.m_code
+ORDER BY count(*) DESC
+LIMIT 0, 10;
+
+
+
+
 
 
 

@@ -1,26 +1,0 @@
-
-µ
-java:S1192I"™Define a constant instead of duplicating this literal "========================================================================================" 4 times.(÷ƒÂ›øÿÿÿÿ
-v
-java:S1192¨"ZDefine a constant instead of duplicating this literal "\t\t\t\t\tðŸ—‚ MUSIC LIST" 3 times.(¤ùí—üÿÿÿÿ
-˜
-java:S1192|"Define a constant instead of duplicating this literal "===============================================================" 12 times.( È˜‰
-{
-java:S1192i"`Define a constant instead of duplicating this literal "===============================" 5 times.(¹ËÎ£ûÿÿÿÿ
-o
-java:S1192"MDefine a constant instead of duplicating this literal "ì•„ì´ë”” : " 3 times.(“ûú×ýÿÿÿÿ8é¬ÄÏ¼0
-œ
-java:S1192Q"€Define a constant instead of duplicating this literal "---------------------------------------------------------------" 3 times.(«€ëàýÿÿÿÿ
-{
-java:S11920"eDefine a constant instead of duplicating this literal "====================================" 5 times.(œÍ²à
-v
-java:S1488"ZImmediately return this expression instead of assigning it to the temporary variable "yn".(ç¡ò™ÿÿÿÿÿ
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(¡“¾Íýÿÿÿÿ8÷¬ÄÏ¼0
-T	java:S106$"9Replace this use of System.out or System.err by a logger.(¡´²8ø¬ÄÏ¼0
-Z	java:S106*"9Replace this use of System.out or System.err by a logger.(Ì¦ý‚ÿÿÿÿÿ8ø¬ÄÏ¼0
-T
-java:S1854H"9Remove this useless assignment to local variable "mData".(Ý÷ñóùÿÿÿÿ
-U
-java:S1155¢">Use isEmpty() to check whether the collection is empty or not.(¯«–ò
-U
-java:S1155¶">Use isEmpty() to check whether the collection is empty or not.(¯«–ò

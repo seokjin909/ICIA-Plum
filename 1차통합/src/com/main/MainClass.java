@@ -1,12 +1,11 @@
 package com.main;
 
 
-import com.controller.DataController;
-import com.dao.MusicDao;
+import com.controller.Controller;
 
 public class MainClass {
     public static void main(String[] args) {
-        DataController cc = new DataController();
+        Controller cc = new Controller();
         cc.run();
     }
 }

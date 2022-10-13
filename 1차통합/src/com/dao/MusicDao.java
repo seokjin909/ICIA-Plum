@@ -190,7 +190,7 @@ public class MusicDao {
         List<MusicDto> mList = new ArrayList<>();
 
         // 전체 데이터를 가져오는 쿼리문 작성
-        String query = "SELECT * FROM Music ORDER BY m_date DESC";
+        String query = "SELECT * FROM Music ORDER BY m_date DESC LIMIT 0,10";
 
         try {
             conn = DriverManager.getConnection(url,user,pwd);
@@ -207,6 +207,38 @@ public class MusicDao {
                 mData.setM_singer(rs.getString(3));
                 mData.setM_date(rs.getString(4));
                 mData.setM_album(rs.getString(5));
+                mList.add(mData);
+            }
+        } catch (SQLException e) {
+            mList = null;
+        } finally {
+            close();
+        }
+        return mList;
+    }
+
+    public List<MusicDto> getPopularMusicList() {
+        List<MusicDto> mList = new ArrayList<>();
+        String query = "SELECT P.m_code, count(*), m_title, m_singer, m_date, m_album FROM playlist P\n" +
+                "JOIN Music M ON P.m_code = M.m_code\n" +
+                "GROUP BY P.m_code\n" +
+                "ORDER BY count(*) DESC LIMIT 0, 10";
+
+        try {
+            conn = DriverManager.getConnection(url,user,pwd);
+            pstmt = conn.prepareStatement(query);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                if (mList == null) {
+                    mList = new ArrayList<>();
+                }
+                MusicDto mData = new MusicDto();
+                mData.setM_code(rs.getInt(1));
+                mData.setM_title(rs.getString(3));
+                mData.setM_singer(rs.getString(4));
+                mData.setM_date(rs.getString(5));
+                mData.setM_album(rs.getString(6));
                 mList.add(mData);
             }
         } catch (SQLException e) {
