@@ -238,11 +238,10 @@ public class Controller {
         dView.outputPopularMuiscList(mList);
     }
 
-
+    // 재생 목록 출력 메소드
     private void showPlayList(MemberDto profil) {
         List<MusicDto> mList = dServ.showPlayList(profil);
         dView.outputPlayList(mList);
-
     }
 
 
