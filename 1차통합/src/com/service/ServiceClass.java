@@ -21,7 +21,10 @@ public class ServiceClass {
 
         int res = dDao.insertData(memData);
 
-        if (res == 0) {
+
+        if (res == -1) {
+            msg = "이미 존재하는 아이디입니다.";
+        } else if(res == 0) {
             msg = "회원가입 실패";
         } else {
             msg = "회원가입 성공";

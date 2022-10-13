@@ -22,7 +22,7 @@ public class Controller {
             menu = dView.showFirst();
 
             if (menu == 0) {
-                System.out.println("PLUM 프로그램 종료");
+                dView.printMsg("PLUM 프로그램 종료");
                 break;
             }
 
@@ -125,7 +125,7 @@ public class Controller {
         dView.login(memData);
         String msg = dServ.loginData(memData);
         dView.printMsg(msg);
-        if (msg != null) {
+        if (!msg.equals("로그인에 실패하셨습니다.")) {
             runAsMember(memData);
         }
     }
