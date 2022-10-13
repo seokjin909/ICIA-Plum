@@ -3,6 +3,7 @@ package com.view;
 import com.dto.AdminDto;
 import com.dto.MusicDto;
 import com.dto.MemberDto;
+import com.dto.PlayListDto;
 
 import java.util.List;
 
@@ -53,14 +54,22 @@ public class DataView {
     }
 
 
-    public int showSubMenu() {
+    public int showSubMenu(MusicDto music) {
         int menu = -1;
         ioc.twoPrint("====================================");
-        ioc.twoPrint("\t\t\t🍑PLUM");
+        ioc.twoPrint("\t\t\t  🍑PLUM");
+        if (music != null) {
+            ioc.twoPrint("\t\t︎️▶︎\t" + music.getM_title());
+            ioc.twoPrint("\t\t-\t" + music.getM_singer() + "\t-");
+            ioc.twoPrint("\t\t\t⏪\t⏯\t⏩");
+        } else {
+            ioc.twoPrint("\t현재 재생중인 음악이 없습니다");
+        }
         ioc.twoPrint("====================================");
         ioc.twoPrint("1. 음악검색");
         ioc.twoPrint("2. 최신음악");
-        ioc.twoPrint("3. 재생목록");
+        ioc.twoPrint("3. 인기차트");
+        ioc.twoPrint("4. 재생목록");
         ioc.twoPrint("0. 로그아웃");
         menu = ioc.inNum("입력 > ");
         return menu;
@@ -97,7 +106,7 @@ public class DataView {
         return mData;
     }
 
-    public int showMainMenu() {
+    public int showAdminMenu() {
         int m = -1;
         ioc.twoPrint("====================================");
         ioc.twoPrint("\t\t\t🍑PLUM MUSIC");
@@ -113,7 +122,7 @@ public class DataView {
 
     public void inputMusicData(MusicDto mData) {
         ioc.twoPrint("===============================");
-        ioc.twoPrint("음악 정보를 입력바랍니다 >>>>");
+        ioc.twoPrint("음악 정보를 입력합니다 >>>>");
         ioc.twoPrint("===============================");
         mData.setM_title(ioc.inStr("제목 : "));
         mData.setM_singer(ioc.inStr("가수 : "));
@@ -201,7 +210,7 @@ public class DataView {
         ioc.twoPrint("===============================================================");
         // 목록 출력(반복)
         for (MusicDto m : mList) {
-            ioc.twoPrint((mList.indexOf(m)+1) +"\t| " + m.getM_title() + "\t" + m.getM_singer() + "\t\t" + m.getM_date() + "\t" + m.getM_album());
+            ioc.twoPrint((mList.indexOf(m) + 1) + "\t| " + m.getM_title() + "\t" + m.getM_singer() + "\t\t" + m.getM_date() + "\t" + m.getM_album());
             ioc.twoPrint("---------------------------------------------------------------");
         }
         ioc.twoPrint("\t\t\t\t\t🗂 MUSIC LIST");
@@ -209,5 +218,23 @@ public class DataView {
     }
 
 
-
+    public void outputPopularMuiscList(List<MusicDto> mList) {
+        if (mList.size() == 0) {
+            ioc.twoPrint("ERROR 404 데이터가 없습니다");
+            ioc.twoPrint("===============================================================");
+            return;
+        }
+        ioc.twoPrint("===============================================================");
+        ioc.twoPrint("\t\t\t\t\t🔥 인기차트 TOP 10");
+        ioc.twoPrint("===============================================================");
+        ioc.twoPrint("번호\t| 제목\t\t\t가수\t\t\t발매일\t\t앨범");
+        ioc.twoPrint("===============================================================");
+        // 목록 출력(반복)
+        for (MusicDto m : mList) {
+            ioc.twoPrint((mList.indexOf(m) + 1) + "\t| " + m.getM_title() + "\t" + m.getM_singer() + "\t\t" + m.getM_date() + "\t" + m.getM_album());
+            ioc.twoPrint("---------------------------------------------------------------");
+        }
+        ioc.twoPrint("\t\t\t\t\t🗂 MUSIC LIST");
+        ioc.twoPrint("===============================================================");
+    }
 }

@@ -6,6 +6,7 @@ import com.dao.PlayListDao;
 import com.dto.AdminDto;
 import com.dto.MemberDto;
 import com.dto.MusicDto;
+import com.dto.PlayListDto;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class DataService {
 
         int res = dDao.insertData(memData);
 
-        if(res == 0 ){
+        if (res == 0) {
             msg = "회원가입 실패";
         } else {
             msg = "회원가입 성공";
@@ -31,12 +32,11 @@ public class DataService {
     public String loginData(MemberDto memData) {
         String msg = null;
 
-        MemberDto mData  = dDao.loginData(memData);
+        MemberDto mData = dDao.loginData(memData);
 
-        if(mData == null){
+        if (mData == null) {
             msg = "로그인에 실패하셨습니다.";
-        }
-        else {
+        } else {
             msg = mData.getM_name() + "님 로그인에 성공하셨습니다.";
         }
 
@@ -48,10 +48,10 @@ public class DataService {
 
         MemberDto mData = dDao.findPwData(memData);
 
-        if(mData == null){
+        if (mData == null) {
             msg = "해당하는 아이디는 존재하지 않습니다.";
         } else {
-            msg = "해당하는 아이디의 비밀번호는 " + mData.getM_pwd() +"입니다.";
+            msg = "해당하는 아이디의 비밀번호는 " + mData.getM_pwd() + "입니다.";
         }
 
         return msg;
@@ -62,7 +62,7 @@ public class DataService {
 
         AdminDto adDto = dDao.mLogiData(aDto);
 
-        if(adDto == null){
+        if (adDto == null) {
             msg = "해당하는 관리자는 존재하지 않습니다.";
         } else {
             msg = "관리자로 로그인되었습니다.";
@@ -75,7 +75,7 @@ public class DataService {
 
         // [DAO]에 데이터 삽입 처리 요구하기
         int res = muDao.insertMusicData(mData);
-        if (res != 0){
+        if (res != 0) {
             msg = "추가 성공";
         } else {
             msg = "추가 실패";
@@ -93,7 +93,7 @@ public class DataService {
         String msg = null;
 
         int res = muDao.updateMusicData(mData);
-        if (res != 0){
+        if (res != 0) {
             msg = "수정 완료";
         } else {
             msg = "수정 실패";
@@ -103,9 +103,9 @@ public class DataService {
 
     public String deleteMusicData(String yn, int code) {
         String msg = null;
-        if (yn.equals("Y")){
+        if (yn.equals("Y")) {
             int res = muDao.deleteMusicData(code);
-            if (res > 0){
+            if (res > 0) {
                 msg = "삭제 성공";
             } else {
                 msg = "삭제 실패";
@@ -123,13 +123,6 @@ public class DataService {
         return mList;
     }
 
-    public List<MusicDto> getLatestMusicList() {
-        // [DAO]의 전체 목록을 ArrayList에 저장
-        List<MusicDto> mList = muDao.getLatestMusicList();
-        return mList;
-    }
-
-
     public List<MusicDto> getSearchMusicList(String searchIndex) {
         List<MusicDto> mList = muDao.getSearchMusicList(searchIndex);
         return mList;
@@ -140,7 +133,7 @@ public class DataService {
         String msg = null;
 
         int res = pDao.insertMusicData(mData, profil);
-        if (res != 0){
+        if (res != 0) {
             msg = "추가 완료";
         } else {
             msg = "추가 실패";
@@ -149,4 +142,19 @@ public class DataService {
     }
 
 
+    public MusicDto getPlayList(PlayListDto pList, MemberDto profil) {
+        MusicDto music = pDao.getFirstMusic(pList, profil);
+        return music;
+    }
+
+    public List<MusicDto> getLatestMusicList() {
+        // [DAO]의 전체 목록을 ArrayList에 저장
+        List<MusicDto> mList = muDao.getLatestMusicList();
+        return mList;
+    }
+
+    public List<MusicDto> getPopularMusicList() {
+        List<MusicDto> mList = muDao.getPopularMusicList();
+        return mList;
+    }
 }
