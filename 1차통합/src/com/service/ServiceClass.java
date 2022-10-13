@@ -160,7 +160,6 @@ public class ServiceClass {
 
     public List<MusicDto> showPlayList(MemberDto profil) {
         List<MusicDto> mList = muDao.showPlayList(profil);
-
         return mList;
     }
 }
