@@ -13,6 +13,7 @@ public class MemberDao {
 
     private Connection conn;
     private PreparedStatement pstmt;
+    private PreparedStatement pstmt2;
     private ResultSet rs;
 
     public MemberDao(){
@@ -32,20 +33,32 @@ public class MemberDao {
     }
 
     public int insertData(MemberDto memData) {
+        MemberDto ck_mDto = null;
         int result = 0;
 
-        String query = "INSERT INTO member VALUES (?, ?, ?, ?)";
+        String query1 = "SELECT m_id FROM member WHERE m_id = ?";
+        String query2 = "INSERT INTO member VALUES (?, ?, ?, ?)";
 
         try {
             conn = DriverManager.getConnection(url, user, pwd);
-            pstmt = conn.prepareStatement(query);
+            pstmt = conn.prepareStatement(query1);
             pstmt.setString(1, memData.getM_id());
-            pstmt.setString(2, memData.getM_pwd());
-            pstmt.setString(3, memData.getM_name());
-            pstmt.setInt(4, memData.getM_age());
-            result = pstmt.executeUpdate();
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                result = -1;
+
+            } else {
+                pstmt2 = conn.prepareStatement(query2);
+                pstmt2.setString(1, memData.getM_id());
+                pstmt2.setString(2, memData.getM_pwd());
+                pstmt2.setString(3, memData.getM_name());
+                pstmt2.setInt(4, memData.getM_age());
+                result = pstmt2.executeUpdate();
+            }
         } catch (SQLException e) {
             result = 0;
+
         } finally {
             close();
         }
