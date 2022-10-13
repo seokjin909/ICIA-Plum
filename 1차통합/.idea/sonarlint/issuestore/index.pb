@@ -11,5 +11,3 @@ L
 src/com/dto/PlayListDto.java,1/b/1b627f18a7e9cd1c8e5eb237bdb80f23e475a76b
 I
 src/com/dao/AdminDao.java,a/3/a3242d3dc27621bc3d070d79e4c751d882ece4a1
-J
-src/com/dao/MemberDao.java,8/e/8e486f4329d14755e62771ffcd6eec99406ebc90
