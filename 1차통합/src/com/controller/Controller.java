@@ -2,9 +2,11 @@ package com.controller;
 
 import com.dto.AdminDto;
 import com.dto.MusicDto;
+import com.dto.PlayListDto;
 import com.service.DataService;
 import com.view.DataView;
 import com.dto.MemberDto;
+
 import java.util.List;
 
 public class DataController {
@@ -13,18 +15,18 @@ public class DataController {
 
 
     // 기본 실행 메소드
-    public void run(){
+    public void run() {
         int menu = -1;
 
-        while(true){
+        while (true) {
             menu = dView.showFirst();
 
-            if(menu == 0){
+            if (menu == 0) {
                 System.out.println("PLUM 프로그램 종료");
                 break;
             }
 
-            switch (menu){
+            switch (menu) {
                 case 1:
                     login();
                     break;
@@ -44,12 +46,12 @@ public class DataController {
 
 
     // 관리자 계정 실행 메소드
-    public void run3() {
+    public void rusAsAdministrator() {
 
         int menu = -1;
 
         while (true) {
-            menu = dView.showMainMenu();
+            menu = dView.showAdminMenu();
 
             if (menu == 0) {
                 dView.printMsg("프로그램 종료");
@@ -78,11 +80,16 @@ public class DataController {
     }
 
     // 로그인 이후 실행 메소드
-    public void run2(MemberDto profil) {
+    public void runAsMember (MemberDto profil) {
         int menu = -1;
-
         while (true) {
-            menu = dView.showSubMenu();
+
+            // 로그인한 회원의 플레이리스트 중 가장 상단에 있는 노래를 가져오는 메소드
+            PlayListDto pList = new PlayListDto(); // 회원의 플레이리스트를 담아올 인스턴스 생성
+            MusicDto music = new MusicDto(); // 플레이리스트에서 가장 마지막에 추가된 노래의 정보를 담을 인스턴스 생성
+            music = dServ.getPlayList(pList, profil);
+
+            menu = dView.showSubMenu(music);
 
             if (menu == 0) {
                 dView.printMsg("프로그램 종료");
@@ -97,8 +104,10 @@ public class DataController {
                     latestMusic();
                     break;
                 case 3:
+                    popularMusic();
                     break;
                 case 4:
+                    // showPlayList(profil);
                     break;
                 default:
                     dView.printMsg("0~4 사이 숫자 입력!");
@@ -107,27 +116,16 @@ public class DataController {
         }
     }
 
-    private void managLogin() {
-        AdminDto aDto = new AdminDto();
-        dView.managLogin(aDto);
-        String msg = dServ.mLoginData(aDto);
-        dView.printMsg(msg);
-        if(msg.equals("관리자로 로그인되었습니다.")){
-            run3();
-        }
+    /* run */
 
-    }
-
-
-
-    // 로그인 메소드
+    // 회원 계정 로그인 메소드
     private void login() {
         MemberDto memData = new MemberDto();
         dView.login(memData);
         String msg = dServ.loginData(memData);
         dView.printMsg(msg);
-        if (msg != null){
-            run2(memData);
+        if (msg != null) {
+            runAsMember(memData);
         }
     }
 
@@ -147,6 +145,21 @@ public class DataController {
         String msg = dServ.findPwData(memData);
         System.out.println(msg);
     }
+
+    // 관리자 계정 로그인 메소드
+    private void managLogin() {
+        AdminDto aDto = new AdminDto();
+        dView.managLogin(aDto);
+        String msg = dServ.mLoginData(aDto);
+        dView.printMsg(msg);
+        if (msg.equals("관리자로 로그인되었습니다.")) {
+            rusAsAdministrator();
+        }
+
+    }
+
+
+    /* RunAsAdministrator */
 
     // 음악 정보 추가 메소드
     private void insertMusicData() {
@@ -185,7 +198,7 @@ public class DataController {
         if (mData != null) {
             dView.outputSearchMusicData(mData);
             String yn = dView.selectDeleteYN("삭제하시겠습니까? [Y/N] ");
-            String msg = dServ.deleteMusicData(yn,code);
+            String msg = dServ.deleteMusicData(yn, code);
             dView.printMsg(msg);
         }
     }
@@ -198,6 +211,7 @@ public class DataController {
 
     }
 
+    /* RunAsMember */
 
     // 음악 검색 메소드 (중복 허용)
     private void searchMusic(MemberDto memdata) {
@@ -215,4 +229,9 @@ public class DataController {
         dView.outputLatestMusicList(mList);
     }
 
+    // 인기 차트 출력 메소드
+    private void popularMusic() {
+        List<MusicDto> mList = dServ.getPopularMusicList();
+        dView.outputPopularMuiscList(mList);
+    }
 }
