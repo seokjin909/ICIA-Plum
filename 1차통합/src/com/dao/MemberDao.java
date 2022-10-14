@@ -3,6 +3,7 @@ package com.dao;
 import com.dto.AdminDto;
 import com.dto.MemberDto;
 import java.sql.*;
+import java.util.InputMismatchException;
 
 public class MemberDao {
 
@@ -32,6 +33,7 @@ public class MemberDao {
         } catch(SQLException e) { }
     }
 
+
     public int insertData(MemberDto memData) {
         MemberDto ck_mDto = null;
         int result = 0;
@@ -56,6 +58,7 @@ public class MemberDao {
                 pstmt2.setInt(4, memData.getM_age());
                 result = pstmt2.executeUpdate();
             }
+
         } catch (SQLException e) {
             result = 0;
 
@@ -65,12 +68,46 @@ public class MemberDao {
         return result;
     }
 
+    /*
+    public int insertData(MemberDto memData) {
+
+        int result = 0;
+
+        String query2 = "INSERT INTO member VALUES (?, ?, ?, ?)";
+
+        try {
+            conn = DriverManager.getConnection(url, user, pwd);
+            pstmt2 = conn.prepareStatement(query2);
+
+            pstmt2 = conn.prepareStatement(query2);
+            pstmt2.setString(1, memData.getM_id());
+            pstmt2.setString(2, memData.getM_pwd());
+            pstmt2.setString(3, memData.getM_name());
+            pstmt2.setInt(4, memData.getM_age());
+            result = pstmt2.executeUpdate();
+
+        }
+        catch(SQLIntegrityConstraintViolationException e) {
+            result = -1;
+        }
+        catch (SQLException e){
+            result = 0;
+        }
+            
+        finally {
+            close();
+        }
+        return result;
+    }
+     */
+
     public MemberDto loginData(MemberDto memData) {
         MemberDto mData = null;
 
         String query = "SELECT * FROM member WHERE m_id = ? AND m_pwd = ?";
 
         try {
+
             conn = DriverManager.getConnection(url, user, pwd);
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, memData.getM_id());
@@ -134,7 +171,6 @@ public class MemberDao {
             pstmt.setString(1, aDto.getA_id());
             pstmt.setString(2, aDto.getA_pwd());
             rs = pstmt.executeQuery();
-
 
             if(rs.next()){
                 aData = new AdminDto();

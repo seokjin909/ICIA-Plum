@@ -133,10 +133,12 @@ public class Controller {
     // 회원가입 메소드
     private void singUp() {
         MemberDto memData = new MemberDto();
-        dView.signUp(memData);
-        String msg = dServ.insertData(memData);
-        System.out.println(msg);
-
+        String err = dView.signUp(memData);
+        System.out.println(err);
+        if (!err.equals("회원가입 실패")) {
+            String msg = dServ.insertData(memData);
+            dView.printMsg(msg);
+        }
     }
 
     // 비밀번호 찾기 메소드
@@ -144,7 +146,7 @@ public class Controller {
         MemberDto memData = new MemberDto();
         dView.findPW(memData);
         String msg = dServ.findPwData(memData);
-        System.out.println(msg);
+        dView.printMsg(msg);
     }
 
     // 관리자 계정 로그인 메소드
@@ -170,6 +172,7 @@ public class Controller {
         String msg = dServ.insertMusicData(mData);
         dView.printMsg(msg);
     }
+
 
     // 음악 정보 수정 메소드
     private void updateMusicData() {

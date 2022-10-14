@@ -28,7 +28,8 @@ public class ViewClass {
 
     }
 
-    public void signUp(MemberDto memData) {
+    public String signUp(MemberDto memData) {
+        String err = null;
         ioc.twoPrint("====================================");
         ioc.twoPrint("회원가입을 진행합니다 >>>>");
         ioc.twoPrint("====================================");
@@ -36,6 +37,12 @@ public class ViewClass {
         memData.setM_pwd(ioc.inStr("비밀번호 : "));
         memData.setM_name(ioc.inStr("이름 : "));
         memData.setM_age(ioc.inNum("나이 : "));
+        if (memData.getM_age() == -1) {
+            err = "회원가입 실패";
+        } else {
+            err = "회원가입 성공";
+        }
+        return err;
     }
 
     public void login(MemberDto memData) {
