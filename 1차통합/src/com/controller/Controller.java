@@ -85,9 +85,8 @@ public class Controller {
         while (true) {
 
             // 로그인한 회원의 플레이리스트 중 가장 상단에 있는 노래를 가져오는 메소드
-            PlayListDto pList = new PlayListDto(); // 회원의 플레이리스트를 담아올 인스턴스 생성
             MusicDto music = new MusicDto(); // 플레이리스트에서 가장 마지막에 추가된 노래의 정보를 담을 인스턴스 생성
-            music = dServ.getPlayList(pList, profil);
+            music = dServ.getPlayList(profil);
 
             menu = dView.showSubMenu(music);
 
@@ -209,7 +208,6 @@ public class Controller {
         // [SERVICE]로 음악 테이블의 전체 데이터를 가져오는 메소드, 반환되는 타입은 목록 형태 ArrayList 활용
         List<MusicDto> mList = dServ.getMusicList();
         dView.outputMusicList(mList);
-
     }
 
     /* RunAsMember */

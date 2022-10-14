@@ -145,8 +145,8 @@ public class ServiceClass {
     }
 
 
-    public MusicDto getPlayList(PlayListDto pList, MemberDto profil) {
-        MusicDto music = pDao.getFirstMusic(pList, profil);
+    public MusicDto getPlayList(MemberDto profil) {
+        MusicDto music = pDao.getFirstMusic(profil);
         return music;
     }
 
