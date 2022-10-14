@@ -56,9 +56,12 @@ public class PlayListDao {
         return result;
     }
 
-    public MusicDto getFirstMusic(PlayListDto pList, MemberDto profil) {
+    public MusicDto getFirstMusic(MemberDto profil) {
         MusicDto music = null;
-        String query = "SELECT MS.m_code, m_title, m_singer, M.m_id FROM playList P JOIN member M ON P.m_id = M.m_id JOIN Music MS ON P.m_code = MS.m_code WHERE M.m_id = ?";
+        String query = "SELECT MS.m_code, m_title, m_singer, M.m_id FROM playList P " +
+                "JOIN member M ON P.m_id = M.m_id " +
+                "JOIN Music MS ON P.m_code = MS.m_code " +
+                "WHERE M.m_id = ?";
 
         try {
             conn = DriverManager.getConnection(url,user,pwd);

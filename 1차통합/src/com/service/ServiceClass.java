@@ -145,8 +145,8 @@ public class ServiceClass {
     }
 
 
-    public MusicDto getPlayList(PlayListDto pList, MemberDto profil) {
-        MusicDto music = pDao.getFirstMusic(pList, profil);
+    public MusicDto getPlayList(MemberDto profil) {
+        MusicDto music = pDao.getFirstMusic(profil);
         return music;
     }
 
@@ -163,7 +163,6 @@ public class ServiceClass {
 
     public List<MusicDto> showPlayList(MemberDto profil) {
         List<MusicDto> mList = muDao.showPlayList(profil);
-
         return mList;
     }
 }

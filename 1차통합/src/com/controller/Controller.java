@@ -85,9 +85,8 @@ public class Controller {
         while (true) {
 
             // 로그인한 회원의 플레이리스트 중 가장 상단에 있는 노래를 가져오는 메소드
-            PlayListDto pList = new PlayListDto(); // 회원의 플레이리스트를 담아올 인스턴스 생성
             MusicDto music = new MusicDto(); // 플레이리스트에서 가장 마지막에 추가된 노래의 정보를 담을 인스턴스 생성
-            music = dServ.getPlayList(pList, profil);
+            music = dServ.getPlayList(profil);
 
             menu = dView.showSubMenu(music);
 
@@ -134,11 +133,13 @@ public class Controller {
     private void singUp() {
         MemberDto memData = new MemberDto();
         String err = dView.signUp(memData);
-        System.out.println(err);
         if (!err.equals("회원가입 실패")) {
             String msg = dServ.insertData(memData);
             dView.printMsg(msg);
+        } else {
+            dView.printMsg(err);
         }
+
     }
 
     // 비밀번호 찾기 메소드
@@ -212,7 +213,6 @@ public class Controller {
         // [SERVICE]로 음악 테이블의 전체 데이터를 가져오는 메소드, 반환되는 타입은 목록 형태 ArrayList 활용
         List<MusicDto> mList = dServ.getMusicList();
         dView.outputMusicList(mList);
-
     }
 
     /* RunAsMember */
@@ -241,12 +241,12 @@ public class Controller {
         dView.outputPopularMuiscList(mList);
     }
 
-
+    // 재생 목록 출력 메소드
     private void showPlayList(MemberDto profil) {
         List<MusicDto> mList = dServ.showPlayList(profil);
         dView.outputPlayList(mList);
-
     }
+
 
 
 }

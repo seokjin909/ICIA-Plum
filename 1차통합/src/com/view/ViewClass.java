@@ -97,6 +97,7 @@ public class ViewClass {
 
     public String searchMusic(String s) {
         String str = null;
+        ioc.twoPrint("===============================================================");
         ioc.twoPrint("🔍\t[제목] 또는 [가수]");
         ioc.twoPrint("====================================");
         str = ioc.inStr(s);
@@ -273,7 +274,7 @@ public class ViewClass {
         ioc.twoPrint("===============================================================");
         for(MusicDto m : mList){
             ioc.twoPrint(mList.indexOf(m) + 1 +"\t| " + m.getM_title() + "\t" + m.getM_singer() +"\t\t" + m.getM_album() );
-
+            ioc.twoPrint("---------------------------------------------------------------");
         }
         ioc.twoPrint("\t\t\t\t\t🗂 MUSIC LIST");
         ioc.twoPrint("===============================================================");
