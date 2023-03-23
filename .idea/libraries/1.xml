@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="1차통합">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/1차통합/lombok.jar!/" />
+      <root url="jar://$PROJECT_DIR$/1차통합/mysql-connector-java-8.0.30.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

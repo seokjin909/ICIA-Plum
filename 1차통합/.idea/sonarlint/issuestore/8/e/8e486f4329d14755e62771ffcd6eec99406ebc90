@@ -1,0 +1,11 @@
+
+r	java:S117&"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬á¢Òùÿÿÿÿ8®Ñ¯«½0
+w
+java:S1450"URemove the "pstmt2" field and declare it as a local variable in the relevant methods.(èÕÀŽûÿÿÿÿ8¼Ñ¯«½0
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(ñûøëùÿÿÿÿ8¾Ñ¯«½0
+J	java:S108!")Either remove or fill this block of code.(Ú¼›ßþÿÿÿÿ8¿Ñ¯«½0
+N
+java:S1481&",Remove this unused "ck_mDto" local variable.(¬á¢Òùÿÿÿÿ8¿Ñ¯«½0
+]	java:S125H"<This block of commented-out lines of code should be removed.(™ï¬ùÿÿÿÿ8ÊÑ¯«½0
+Y
+java:S1128"=Remove this unused import 'java.util.InputMismatchException'.(Ý§18ÎÑ¯«½0
